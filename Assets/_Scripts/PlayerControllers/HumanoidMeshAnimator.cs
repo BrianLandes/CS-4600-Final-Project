@@ -44,23 +44,34 @@ public class HumanoidMeshAnimator : MonoBehaviour {
 		float verticalMovement = velocity.z;
 		var currentTorque = GetTurnSpeed();
 
-		if ( Mathf.Approximately(0, horizontalMovement) && Mathf.Approximately(0, verticalMovement) && Mathf.Approximately(0, currentTorque)) {
-			if ( inLocomotion ) {
-				//animator.SetTrigger("StopLocomotion");
-				inLocomotion = false;
-			}
-		} else {
-			if (!inLocomotion) {
-				//animator.SetTrigger("StartLocomotion");
-				inLocomotion = true;
-			}
-			
-			//animator.SetFloat("TurnSpeed", currentTorque * turnSpeedToAnimationScale);
+		float epsilon = 0.01f;
 
-			animator.SetFloat("ForwardSpeed", verticalMovement * forwardSpeedToAnimationScale);
-			animator.SetFloat("SidewaysSpeed", horizontalMovement * sidewaysSpeedToAnimationScale + currentTorque * turnSpeedToAnimationScale);
-		}
+		bool stopped = velocity.sqrMagnitude < epsilon && Mathf.Abs(currentTorque) < epsilon;
+
+		inLocomotion = !stopped;
+
 		animator.SetBool("Running", inLocomotion);
+		
+		animator.SetFloat("ForwardSpeed", verticalMovement * forwardSpeedToAnimationScale);
+		animator.SetFloat("SidewaysSpeed", horizontalMovement * sidewaysSpeedToAnimationScale + currentTorque * turnSpeedToAnimationScale);
+
+		//if ( velocity.sqrMagnitude < epsilon && Mathf.Abs(currentTorque) < epsilon) {
+		//	//if ( Mathf.Approximately(0, horizontalMovement) && Mathf.Approximately(0, verticalMovement) && Mathf.Approximately(0, currentTorque)) {
+		//		if ( inLocomotion ) {
+		//		//animator.SetTrigger("StopLocomotion");
+		//		inLocomotion = false;
+		//	}
+		//} else {
+		//	if (!inLocomotion) {
+		//		//animator.SetTrigger("StartLocomotion");
+		//		inLocomotion = true;
+		//	}
+			
+		//	//animator.SetFloat("TurnSpeed", currentTorque * turnSpeedToAnimationScale);
+
+		//	animator.SetFloat("ForwardSpeed", verticalMovement * forwardSpeedToAnimationScale);
+		//	animator.SetFloat("SidewaysSpeed", horizontalMovement * sidewaysSpeedToAnimationScale + currentTorque * turnSpeedToAnimationScale);
+		//}
 
 		//var currentTorque = GetTurnSpeed();
 		//animator.SetFloat("TurnSpeed", currentTorque * turnSpeedToAnimationScale);
