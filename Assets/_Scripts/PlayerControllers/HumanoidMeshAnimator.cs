@@ -9,7 +9,7 @@ public class HumanoidMeshAnimator : MonoBehaviour {
 	
 	public Grounded groundedComponent;
 	
-	public float maxUpperBodyWeight = 1f;
+	//public float maxUpperBodyWeight = 1f;
 	
 	Animator animator;
 
@@ -20,11 +20,11 @@ public class HumanoidMeshAnimator : MonoBehaviour {
 
 	bool jumpBoosting = false;
 	
-	public int upperBodyLayerIndex = 2;
+	//public int upperBodyLayerIndex = 2;
 
-	public float upperBodyWeightChangeScale = 0.1f;
+	//public float upperBodyWeightChangeScale = 0.1f;
 
-	private float targetUpperBodyWeight = 0f;
+	//private float targetUpperBodyWeight = 0f;
 	
 	private void Start() {
 		animator = GetComponent<Animator>();
@@ -76,10 +76,10 @@ public class HumanoidMeshAnimator : MonoBehaviour {
 		}
 
 
-		float currentWeight = animator.GetLayerWeight(upperBodyLayerIndex);
-		float difference = targetUpperBodyWeight - currentWeight;
+		//float currentWeight = animator.GetLayerWeight(upperBodyLayerIndex);
+		//float difference = targetUpperBodyWeight - currentWeight;
 
-		animator.SetLayerWeight(upperBodyLayerIndex, currentWeight+ difference* upperBodyWeightChangeScale);
+		//animator.SetLayerWeight(upperBodyLayerIndex, currentWeight+ difference* upperBodyWeightChangeScale);
 	}
 	
 	private Vector3 GetVelocity() {
