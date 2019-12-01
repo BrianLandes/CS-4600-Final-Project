@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Scenes/ClothTest.unity
+    guid: 27e1986abc46ace4eb9d5ecda82b1a56
   m_configObjects: {}
